@@ -1,0 +1,35 @@
+project_id = "vendorbooks"
+
+[db]
+major_version = 15
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback", "http://localhost:3000/portal"]
+
+[auth.email]
+enable_signup = true
+enable_confirmations = false
+
+# Optional Supabase schedules. The supported deploy path is Vercel Cron
+# calling the same workflows at /api/cron/* (see vercel.json).
+[functions.token-refresh]
+verify_jwt = false
+
+[functions.nightly-reconcile]
+verify_jwt = false
+
+[functions.monthly-close]
+verify_jwt = false
+
+[functions.square-webhook]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.oauth-start]
+verify_jwt = false
+
+[functions.oauth-callback]
+verify_jwt = false

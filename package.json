@@ -1,0 +1,38 @@
+{
+  "name": "vendorbooks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VendorBooks — vendor payout statements for Square sellers. Calculates amounts. Never moves money.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/fraunces": "^5.2.5",
+    "@fontsource/outfit": "^5.2.5",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.49.4",
+    "next": "^15.5.4",
+    "pdf-lib": "^1.17.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "resend": "^4.5.1",
+    "server-only": "^0.0.1",
+    "stripe": "^18.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  }
+}

@@ -88,8 +88,6 @@ export interface AppStore {
   logEmail(entry: Omit<EmailLog, "id" | "createdAt">): Promise<EmailLog>;
   listEmails(shopId?: string): Promise<EmailLog[]>;
   deleteSellerSquareData(merchantId: string): Promise<{ shopId: string | null }>;
-  dump(): StoreDump;
-  replace(dump: StoreDump): void;
 }
 
 export type StoreDump = {

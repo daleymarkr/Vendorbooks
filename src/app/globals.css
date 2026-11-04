@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background:
+    radial-gradient(1100px 480px at 0% -10%, rgba(196, 165, 116, 0.28), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(27, 63, 50, 0.08), transparent 42%),
+    #f4efe6;
+  min-height: 100vh;
+}
+
+::selection {
+  background: #c4a574;
+  color: #17211d;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-pine text-paper-3 hover:bg-pine-2;
+  }
+  .btn-brass {
+    @apply btn bg-brass text-paper-3 hover:bg-ink;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-paper-3 text-ink hover:border-brass;
+  }
+  .btn-danger {
+    @apply btn border border-brick bg-transparent text-brick hover:bg-brick hover:text-paper-3;
+  }
+  .card {
+    @apply rounded-3xl border border-line bg-paper-3/90 shadow-sheet;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-3 py-2 text-sm text-ink outline-none ring-pine/30 placeholder:text-ink-soft/50 focus:border-pine focus:ring-2;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink-soft;
+  }
+  .stamp {
+    @apply inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-[0.14em];
+  }
+  .banner-bad {
+    @apply rounded-2xl border border-brick/30 bg-red-50 px-4 py-3 text-sm text-brick;
+  }
+  .banner-good {
+    @apply rounded-2xl border border-moss/30 bg-emerald-50 px-4 py-3 text-sm text-good;
+  }
+  .banner-warn {
+    @apply rounded-2xl border border-brass/40 bg-amber-50 px-4 py-3 text-sm text-warn;
+  }
+  .table-wrap {
+    @apply overflow-x-auto;
+  }
+  table.data {
+    @apply w-full text-left text-sm;
+  }
+  table.data th {
+    @apply border-b border-line px-3 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-soft;
+  }
+  table.data td {
+    @apply border-b border-line/80 px-3 py-3 align-top tabular-nums;
+  }
+}
+
+.ledger-sheet {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    rgba(138, 94, 52, 0.18) 32px
+  );
+}

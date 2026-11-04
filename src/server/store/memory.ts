@@ -415,6 +415,10 @@ export class MemoryStore implements AppStore {
     this.db.audit.push({ ...entry, id: crypto.randomUUID(), createdAt: this.clock().toISOString() });
   }
 
+  async listAudit(): Promise<AuditEntry[]> {
+    return [...this.db.audit].reverse();
+  }
+
   async logEmail(entry: Omit<EmailLog, "id" | "createdAt">): Promise<EmailLog> {
     const saved: EmailLog = { ...entry, id: crypto.randomUUID(), createdAt: this.clock().toISOString() };
     this.db.emails.push(saved);

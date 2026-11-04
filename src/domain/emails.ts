@@ -1,7 +1,7 @@
 import { formatUsd } from "./money";
 
 export type EmailMessage = {
-  template: "statement_ready" | "portal_invite" | "trial_ending" | "payment_failed";
+  template: "statement_ready" | "portal_invite" | "trial_ending" | "payment_failed" | "token_stale";
   to: string;
   subject: string;
   text: string;
@@ -74,6 +74,20 @@ export function paymentFailedEmail(input: { to: string; shopName: string; billin
     FOOTER,
   ].join("\n");
   return { template: "payment_failed", to: input.to, subject, text, html: paragraphHtml(text) };
+}
+
+export function tokenStaleEmail(input: { to: string; shopName: string }): EmailMessage {
+  const subject = `VendorBooks needs a Square reconnect for ${input.shopName}`;
+  const text = [
+    `Hello,`,
+    ``,
+    `Square access for ${input.shopName} has not refreshed in more than 8 days.`,
+    `Open VendorBooks and reconnect Square so new sales keep flowing into the ledger.`,
+    `VendorBooks still does not move money. This is only the read connection to Square.`,
+    ``,
+    FOOTER,
+  ].join("\n");
+  return { template: "token_stale", to: input.to, subject, text, html: paragraphHtml(text) };
 }
 
 function paragraphHtml(text: string): string {

@@ -683,6 +683,26 @@ export function recomputeUnlockedSales(
   });
 }
 
+export function allocateLine(line: LedgerLine, vendor: { id: string; commissionBps: number } | null): LedgerLine {
+  const next: LedgerLine = {
+    ...line,
+    vendorId: vendor?.id ?? null,
+    commissionBps: vendor?.commissionBps ?? null,
+    attributionSource: vendor ? "override" : "manual",
+    vendorEarnCents: vendor
+      ? recomputeEarn({
+          baseCents: line.baseCents,
+          commissionBps: vendor.commissionBps,
+          feeCents: line.feeCents,
+          feeMode: line.feeMode,
+        })
+      : 0,
+    rawHash: "",
+  };
+  next.rawHash = hashLine(next);
+  return next;
+}
+
 export function naturalKey(line: Pick<LedgerLine, "shopId" | "squareOrderId" | "squareLineUid" | "lineKind">): string {
   return `${line.shopId}|${line.squareOrderId}|${line.squareLineUid}|${line.lineKind}`;
 }

@@ -35,7 +35,7 @@ export function resolveAccess(shop: Pick<
   const paid = status === "active" || status === "trialing";
 
   if (status === "past_due" || status === "unpaid" || status === "incomplete") {
-    if (graceActive || status === "trialing") {
+    if (graceActive) {
       return pack(named, named, false, null);
     }
     return pack(named, named, true, "payment_failed");

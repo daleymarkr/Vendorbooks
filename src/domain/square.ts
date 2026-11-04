@@ -1,7 +1,24 @@
 import { chunkIds } from "./money";
-import { SQUARE_SCOPES, VENDOR_ATTR_KEY, type SquareOrder } from "./types";
+import { SQUARE_SCOPES, VENDOR_ATTR_KEY, type PublicSquareConnection, type SquareConnection, type SquareOrder } from "./types";
 
 export type SquareEnv = "sandbox" | "production";
+
+export function toPublicConnection(connection: SquareConnection | null | undefined): PublicSquareConnection {
+  if (!connection || connection.revokedAt) return { connected: false };
+  return {
+    connected: true,
+    merchantId: connection.merchantId,
+    sandbox: connection.sandbox,
+    tokenExpiresAt: connection.tokenExpiresAt,
+    lastRefreshedAt: connection.lastRefreshedAt,
+    scopes: connection.scopes,
+    revokedAt: connection.revokedAt,
+  };
+}
+
+export function isDemoCipher(cipher: string): boolean {
+  return cipher.startsWith("demo:");
+}
 
 export function squareHosts(env: SquareEnv): { connect: string; api: string } {
   if (env === "production") {
